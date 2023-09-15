@@ -3,10 +3,10 @@
   kubernetes.core.k8s_info:
 #        kubeconfig: "{{ lookup('env', 'K8S_AUTH_KUBECONFIG') }}" 
 #    kubeconfig: "kubeconfig" 
-    kind: Service
+    kind: Pod
     namespace: aap-containergroup-namespace
-  register: myocp4_services
-  delegate_to: localhost
+  register: myocp4_pod
+#  delegate_to: localhost
 
 - name: Print output
   debug: 
