@@ -4,7 +4,7 @@
 #        kubeconfig: "{{ lookup('env', 'K8S_AUTH_KUBECONFIG') }}" 
 #    kubeconfig: "kubeconfig" 
     kind: Service
-    namespace: ocp4-kt
+    namespace: aap-containergroup-namespace
   register: myocp4_services
   delegate_to: localhost
 
