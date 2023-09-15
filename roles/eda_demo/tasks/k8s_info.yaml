@@ -10,4 +10,4 @@
 
 - name: Print output
   debug: 
-    msg: "{{ myocp4_services }}"
+    msg: "{{ myocp4_pod }}"
