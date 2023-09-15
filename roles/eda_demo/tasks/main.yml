@@ -1,0 +1,6 @@
+---
+# tasks file for eda-demo
+#
+
+- name: Retrieve namespace service info
+  include_tasks: k8s_info.yaml

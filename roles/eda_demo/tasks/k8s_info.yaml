@@ -1,0 +1,13 @@
+---
+- name: Get a list of all Services in the ocp4-kt namespace.
+  kubernetes.core.k8s_info:
+#        kubeconfig: "{{ lookup('env', 'K8S_AUTH_KUBECONFIG') }}" 
+#    kubeconfig: "kubeconfig" 
+    kind: Service
+    namespace: ocp4-kt
+  register: myocp4_services
+  delegate_to: localhost
+
+- name: Print output
+  debug: 
+    msg: "{{ myocp4_services }}"
