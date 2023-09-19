@@ -17,8 +17,8 @@
       apiVersion: rbac.authorization.k8s.io/v1
       kind: Role
       metadata:
-        name: ocp4-kt-anyuid
-        namespace: ocp4-kt
+        name: eda-anyuid
+        namespace: eda
       rules:
       - apiGroups:
         - security.openshift.io
