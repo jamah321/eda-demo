@@ -1,10 +1,10 @@
 ---
-- name: Get a list of all Services in the ocp4-kt namespace.
+- name: Create demo app 
   kubernetes.core.k8s_info:
 #        kubeconfig: "{{ lookup('env', 'K8S_AUTH_KUBECONFIG') }}" 
 #    kubeconfig: "kubeconfig" 
     kind: Pod
-    namespace: ocp4-kt
+    namespace: aap-containergroup-namespace
   register: myocp4_pod
 #  delegate_to: localhost
 
