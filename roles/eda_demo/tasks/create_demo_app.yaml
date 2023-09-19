@@ -1,13 +1,126 @@
 ---
-- name: Create demo app 
-  kubernetes.core.k8s_info:
-#        kubeconfig: "{{ lookup('env', 'K8S_AUTH_KUBECONFIG') }}" 
-#    kubeconfig: "kubeconfig" 
-    kind: Pod
-    namespace: aap-containergroup-namespace
-  register: myocp4_pod
-#  delegate_to: localhost
+- name: Create service account object
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: eda-sa
+        namespace: eda
 
-- name: Print output
-  debug: 
-    msg: "{{ myocp4_pod }}"
+
+- name: Create anyuid cc object
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: ocp4-kt-anyuid
+        namespace: ocp4-kt
+      rules:
+      - apiGroups:
+        - security.openshift.io
+        resourceNames:
+        - anyuid
+        resources:
+        - securitycontextconstraints
+        verbs:
+        - use
+
+- name: Create anyuid rolebinding object
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: eda-sa-to-anyuid
+        namespace: eda
+      subjects:
+        - kind: ServiceAccount
+          name: eda-sa
+      roleRef:
+        kind: Role
+        name: eda-anyuid
+        apiGroup: rbac.authorization.k8s.io
+
+
+- name: Create deployment object
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        labels:
+          app: ocp4-kt
+        name: ocp4-kt
+        namespace: eda
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: ocp4-kt
+        strategy: {}
+        template:
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: ocp4-kt
+          spec:
+            containers:
+            - image: quay.io/terrencejun3210/ocp4-kt:v1
+              name: ocp4-kt
+              resources:
+                limits:
+                  cpu: '1'
+                  memory: 1Gi
+                requests:
+                  cpu: 250m
+                  memory: 512Mi
+            serviceAccount: eda-sa
+            serviceAccountName: eda-sa
+
+
+
+- name: Create sevice object
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        labels:
+          app: ocp4-kt
+        name: ocp4-kt
+        namespace: eda
+      spec:
+        ports:
+        - port: 8080
+          protocol: TCP
+          targetPort: 8080
+        selector:
+          app: ocp4-kt
+
+
+- name: Create route object
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: route.openshift.io/v1
+      kind: Route
+      metadata:
+        labels:
+          app: ocp4-kt
+        name: ocp4-kt
+        namespace: eda
+      spec:
+        path: /ocp4-kt/
+        port:
+          targetPort: 8080
+        to:
+          kind: Service
+          name: ocp4-kt
+          weight: 100
