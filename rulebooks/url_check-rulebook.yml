@@ -8,6 +8,5 @@
 
   rules:
     - name: Trigger action
-      condition: 
       action:
         debug:
