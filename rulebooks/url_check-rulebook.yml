@@ -1,0 +1,13 @@
+- name: Listen and polling URL 
+  hosts: all
+  sources:
+    - ansible.eda.url_check:
+        urls:
+          - http://172.16.15.6/index.html
+        delay: 2
+
+  rules:
+    - name: Trigger action
+      condition: 
+      action:
+        debug:
