@@ -9,7 +9,7 @@
 
   rules:
     - name: httpd service down detected
-      condition: event.payload == "testing123"
+      condition: event.message != ""
       action:
         run_job_template:
           name: kafka-eda-demo-template
