@@ -1,0 +1,7 @@
+---
+- name: Kafka EDA Demo
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - role: kafka_eda_demo 

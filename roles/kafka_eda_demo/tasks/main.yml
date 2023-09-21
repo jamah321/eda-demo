@@ -1,0 +1,7 @@
+---
+# tasks file for eda-demo
+#
+
+- name: Restart Apache (httpd) service 
+#  include_tasks: k8s_info.yaml
+  include_tasks: httpd_restart.yaml

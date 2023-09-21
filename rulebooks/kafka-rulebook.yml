@@ -9,6 +9,8 @@
 
   rules:
     - name: Trigger action
-      condition: event.schema.type == "string"
+      condition: event.schema.payload == "shutting down"
       action:
-        debug:
+        run_job_template:
+          name: kafka-eda-demo-template
+          organization: Default
