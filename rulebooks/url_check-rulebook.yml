@@ -4,7 +4,7 @@
     - ansible.eda.url_check:
         urls:
           - http://172.16.15.6/index.html
-        delay: 2
+        delay: 10
 
   rules:
     - name: Website is up!!
