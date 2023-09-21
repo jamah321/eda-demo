@@ -1,0 +1,11 @@
+---
+
+- ansible.builtin.debug:
+    msg: "httpd service is down, attempting service restart"
+
+- name: Restart httpd service 
+  ansible.builtin.systemd:
+    state: restarted
+    name: httpd
+    enabled: true
+

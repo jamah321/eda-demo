@@ -1,0 +1,6 @@
+---
+
+- ansible.builtin.debug:
+    msg: "httpd service is up, no further action needed"
+
+
