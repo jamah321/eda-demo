@@ -1,0 +1,14 @@
+- name: Listen and reading message from Kafka topic
+  hosts: all
+  sources:
+    - ansible.eda.kafka:
+        host: ocpmanagement.ocpdemo.ghost.lenovolabs
+        port: 9092
+        topic: connect-httpd
+        group_id:
+
+  rules:
+    - name: Trigger action
+      condition: event.schema.type == "string"
+      action:
+        debug:
