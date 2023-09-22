@@ -2,6 +2,5 @@
 # tasks file for eda-demo
 #
 
-- name: Restart Apache (httpd) service 
-#  include_tasks: k8s_info.yaml
-  include_tasks: httpd_restart.yaml
+- name: Copy backup home page file to webdir
+  include_tasks: replace_index_html.yaml 
