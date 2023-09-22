@@ -8,9 +8,15 @@
         group_id:
 
   rules:
-    - name: httpd service down detected
-      condition: event.payload contains "testing123"
+    - name: Kafka message debuging 
+      condition: event.schema is defined
       action:
-        run_job_template:
-          name: kafka-eda-demo-template
-          organization: Default
+        debug:
+
+#    - name: httpd service down detected
+#      condition: event.schema is defined
+#      action:
+#        run_job_template:
+#          name: kafka-eda-demo-template
+#          organization: Default
+
