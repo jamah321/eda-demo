@@ -14,10 +14,19 @@
 #          name: url-check-httpd-retain-template
 #          organization: Default
 
-    - name: This is debug logging messages
-      condition: event.url_check is defined
+#    - name: This is debug logging messages
+#      condition: event.url_check is defined
+#      action:
+#        debug:
+
+
+    - name: Home page inaccessible!!
+      condition: event.url_check.status_code == "404"
       action:
-        debug:
+        run_job_template:
+          name: url-check-httpd-replace-template
+          organization: Default
+
 
     - name: Web service is down!! 
       condition: event.url_check.error_msg is search("Cannot connect to host",ignorecase=true)

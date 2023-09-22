@@ -1,0 +1,13 @@
+---
+
+- ansible.builtin.debug:
+    msg: "Home page is inaccessuble, attempting to replace home page"
+
+- name: Copy backup home page file to webdir
+  copy:
+    src: files/index.html
+    dest: /var/www/html/index.html
+    owner: apache
+    group: apache
+    mode: 0644
+

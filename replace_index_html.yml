@@ -1,0 +1,7 @@
+---
+- name: URL Check EDA Demo
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - role: url_check_httpd_replace_demo 
