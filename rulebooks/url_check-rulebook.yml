@@ -7,15 +7,15 @@
         delay: 20
 
   rules:
-    - name: Website is up!!
-      condition: event.url_check.status == "up"
-      action:
-        run_job_template:
-          name: url-check-httpd-retain-template
-          organization: Default
+#    - name: Website is up!!
+#      condition: event.url_check.status == "up"
+#      action:
+#        run_job_template:
+#          name: url-check-httpd-retain-template
+#          organization: Default
 
-    - name: Website is down!! 
-      condition: event.url_check.status == "down"
+    - name: Web service is down!! 
+      condition: event.url_check.error_msg == "Cannot connect to host"
       action:
         run_job_template:
           name: url-check-httpd-retart-template
