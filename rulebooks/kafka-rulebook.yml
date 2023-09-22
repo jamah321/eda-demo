@@ -9,7 +9,7 @@
 
   rules:
     - name: Kafka message debuging 
-      condition: event.schema is defined
+      condition: schema is defined
       action:
         debug:
 
