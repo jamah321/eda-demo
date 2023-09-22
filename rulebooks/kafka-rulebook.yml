@@ -4,12 +4,12 @@
     - ansible.eda.kafka:
         host: ocpmanagement.ocpdemo.ghost.lenovolabs
         port: 9092
-        topic: connect-httpd
+        topic: connect-eda
         group_id:
 
   rules:
     - name: Kafka message debuging 
-      condition: event.schema is defined
+      condition: event.message is defined
       action:
         debug:
 
