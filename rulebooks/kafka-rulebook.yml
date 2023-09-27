@@ -4,7 +4,7 @@
     - ansible.eda.kafka:
         host: ocpmanagement.ocpdemo.ghost.lenovolabs
         port: 9092
-        topic: dnf-topic
+        topic: connect-dnf
         group_id:
 
   rules:
