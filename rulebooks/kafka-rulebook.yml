@@ -9,7 +9,7 @@
 
   rules:
     - name: Kafka message debuging 
-      condition: event.body.schema.payload is search("DEBUG Removed\: telnet",ignorecase=true)
+      condition: event.body.schema.payload is search("DEBUG Removed\\: telnet",ignorecase=true)
       action:
         debug:
           var: "{{ event.body.payload }}"
