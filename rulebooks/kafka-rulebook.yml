@@ -9,7 +9,7 @@
 
   rules:
     - name: Kafka message debuging 
-      condition: event.message is defined
+      condition: event.body.message is defined
       action:
         debug:
 
