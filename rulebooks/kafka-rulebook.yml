@@ -12,6 +12,7 @@
       condition: event.body.schema is defined
       action:
         debug:
+          var: "{{ event.body.payload }}"
 
 #    - name: httpd service down detected
 #      condition: event.schema is defined
