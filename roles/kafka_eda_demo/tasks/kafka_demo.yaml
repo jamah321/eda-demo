@@ -2,5 +2,5 @@
 
 - name: Debug  
   debug:
-    msg: '{{ ansible_eda.event.body.payload }}'
+    msg: "{{ bring_over }}"
 
