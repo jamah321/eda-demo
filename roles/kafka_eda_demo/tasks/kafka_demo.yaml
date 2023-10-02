@@ -1,0 +1,6 @@
+---
+
+- name: Debug  
+  debug:
+    var: "{{ event.body.payload }}"
+

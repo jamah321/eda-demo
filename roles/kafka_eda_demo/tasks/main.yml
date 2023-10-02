@@ -2,6 +2,6 @@
 # tasks file for eda-demo
 #
 
-- name: Restart Apache (httpd) service 
+- name: Kafka demo 
 #  include_tasks: k8s_info.yaml
-  include_tasks: httpd_restart.yaml
+  include_tasks: kafka_demo.yaml
