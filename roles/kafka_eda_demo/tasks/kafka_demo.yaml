@@ -2,5 +2,5 @@
 
 - name: Debug  
   debug:
-    var: "{{ ansible_eda.event.body.payload }}"
+    var: "{{ ansible.eda.event.body.payload }}"
 
