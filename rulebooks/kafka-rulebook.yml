@@ -7,13 +7,21 @@
         topic: connect-dnf
         group_id:
 
+#  rules:
+#    - name: Kafka telnet dnf log
+#      condition: event.body.payload is search("\sDEBUG\sRemoved:\stelnet",ignorecase=true) or event.body.payload is search("\sDEBUG\sRemoved:\szip",ignorecase=true)
+#      action:
+#        debug:
+#          var: "{{ event.body.payload }}"
+
+
   rules:
-    - name: Kafka telnet dnf log
+    - name: Kafka dnf log messaging
       condition: event.body.payload is search("\sDEBUG\sRemoved:\stelnet",ignorecase=true) or event.body.payload is search("\sDEBUG\sRemoved:\szip",ignorecase=true)
       action:
-        debug:
-          var: "{{ event.body.payload }}"
-
+        run_job_template:
+          name: kafka-eda-demo-template
+          organization: Default
 
 
 #        run_job_template:
