@@ -9,7 +9,7 @@
 
   rules:
     - name: Kafka message debuging 
-      condition: event.body.payload is search("\sDEBUG\sRemoved:\stelnet",ignorecase=true)
+      condition: event.body.payload is search("\sDEBUG\sRemoved:\svars.package}",ignorecase=true)
       action:
         debug:
           var: "{{ event.body.payload }}"
