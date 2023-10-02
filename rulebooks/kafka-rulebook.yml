@@ -9,10 +9,10 @@
 
   rules:
     - name: Kafka message debuging 
-      condition: event.body.schema.payload is search("INFO\sFreed\sspace:",ignorecase=false) and event.body.schema.payload is search("DEBUG\sRemoved\:\stelnet",ignorecase=true)
+      condition: event.body.payload is defined
       action:
         debug:
-#          var: "{{ event.body.payload }}"
+          var: "{{ event.body.payload }}"
 #        run_job_template:
 #          name: kafka-eda-demo-template
 #          organization: Default
