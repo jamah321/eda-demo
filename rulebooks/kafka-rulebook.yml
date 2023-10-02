@@ -12,7 +12,7 @@
       condition: event.body.payload is search("INFO\sFreed\sspace:",ignorecase=false) and event.body.payload is search("DEBUG\sRemoved\:\stelnet",ignorecase=true)
       action:
         debug:
-          var: "{{ event.body.payload }}"
+#          var: "{{ event.body.payload }}"
 #        run_job_template:
 #          name: kafka-eda-demo-template
 #          organization: Default
