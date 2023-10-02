@@ -11,8 +11,9 @@
     - name: Kafka message debuging 
       condition: event.body.payload is defined 
       action:
-        debug:
-          var: "{{ event.body.payload }}"
+        run_job_template:
+          name: kafka-eda-demo-template
+          organization: Default
 
 #    - name: httpd service down detected
 #      condition: event.schema is defined
