@@ -22,7 +22,6 @@
         run_job_template:
           name: kafka-eda-demo-template
           organization: Default
-          job_args:
             extra_vars:
               bring_over: "{{ event.body.payload }}"
 
