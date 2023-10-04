@@ -1,8 +1,8 @@
 ---
 
-- name: Debug  
-  debug:
-    msg: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1', default='') | first }}"
+#- name: Debug  
+#  debug:
+#    msg: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1', default='') | first }}"
 
 
 
@@ -11,8 +11,8 @@
     package_name: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1', default='') | first }}"
 
 
-- debug:
-    var: package_name
+#- debug:
+#    var: package_name
 
 - name: Attempting re-deploy "{{ package_name }}" package
   ansible.builtin.package:
