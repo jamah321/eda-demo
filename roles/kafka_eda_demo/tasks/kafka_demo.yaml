@@ -21,6 +21,11 @@
     state: latest
 
 
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+
 - name: Check whether "{{ package_name }}" package is installed successful
   ansible.builtin.debug:
     msg: "{{ ansible_facts.packages[package_name] | length }} versions of {{ package_name }} are installed!"
