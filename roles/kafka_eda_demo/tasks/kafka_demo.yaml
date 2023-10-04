@@ -2,13 +2,13 @@
 
 - name: Debug  
   debug:
-    msg: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1') }}"
+    msg: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1', default='') | first }}"
 
 
 
 - name: Mandatory package removal detected, retrieving package name
   set_fact:
-    package_name: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1') }}"
+    package_name: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1', default='') | first }}"
 
 
 - debug:
