@@ -7,6 +7,7 @@
         topic: connect-dnf
         group_id:
 
+## For debug source log content purpose ##
 #  rules:
 #    - name: Kafka telnet dnf log
 #      condition: event.body.payload is search("\sDEBUG\sRemoved:\stelnet",ignorecase=true) or event.body.payload is search("\sDEBUG\sRemoved:\szip",ignorecase=true)
@@ -33,19 +34,3 @@
         run_job_template:
           name: kafka-eda-demo-template
           organization: Default
-#          job_args:
-#            extra_vars:
-#              bring_over: "{{ event.body.payload }}"
-
-
-#        run_job_template:
-#          name: kafka-eda-demo-template
-#          organization: Default
-
-#    - name: httpd service down detected
-#      condition: event.schema is defined
-#      action:
-#        run_job_template:
-#          name: kafka-eda-demo-template
-#          organization: Default
-
