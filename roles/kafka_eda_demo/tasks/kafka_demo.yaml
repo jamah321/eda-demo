@@ -5,3 +5,21 @@
     msg: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1') }}"
 
 
+
+- name: Mandatory package removal detected, retrieving package name
+  set_fact:
+    package_name: "{{ ansible_eda.event.body.payload | regex_search('Removed: (\\w+)-', '\\1') }}"
+
+
+- name: Attempting re-deploy {{ package_name }} package
+  ansible.builtin.package:
+  name:
+    - "{{ package_name }}"
+  state: latest
+
+
+- name: Check whether {{ package_name }} package is installed successful
+  ansible.builtin.debug:
+    msg: "{{ ansible_facts.packages['package_name'] | length }} versions of {{ package_name }} are installed!"
+  when: "'{{ package_name }}' in ansible_facts.packages"
+
