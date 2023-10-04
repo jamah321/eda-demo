@@ -16,9 +16,9 @@
 
 - name: Attempting re-deploy "{{ package_name }}" package
   ansible.builtin.package:
-  name:
-    - "{{ package_name }}"
-  state: latest
+    name:
+      - "{{ package_name }}"
+    state: latest
 
 
 - name: Check whether "{{ package_name }}" package is installed successful
