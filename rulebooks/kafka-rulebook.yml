@@ -15,16 +15,27 @@
 #          var: "{{ event.body.payload }}"
 
 
+#  rules:
+#    - name: Kafka dnf log messaging
+#      condition: event.body.payload is search("\sDEBUG\sRemoved:\stelnet",ignorecase=true) or event.body.payload is search("\sDEBUG\sRemoved:\szip",ignorecase=true)
+#      action:
+#        run_job_template:
+#          name: kafka-eda-demo-template
+#          organization: Default
+#          job_args:
+#            extra_vars:
+#              bring_over: "{{ event.body.payload }}"
+
   rules:
     - name: Kafka dnf log messaging
-      condition: event.body.payload is search("\sDEBUG\sRemoved:\stelnet",ignorecase=true) or event.body.payload is search("\sDEBUG\sRemoved:\szip",ignorecase=true)
+      condition: event.body.payload is search("\sDEBUG\sRemoved:\s",ignorecase=true)
       action:
         run_job_template:
           name: kafka-eda-demo-template
           organization: Default
-          job_args:
-            extra_vars:
-              bring_over: "{{ event.body.payload }}"
+#          job_args:
+#            extra_vars:
+#              bring_over: "{{ event.body.payload }}"
 
 
 #        run_job_template:
