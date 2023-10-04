@@ -1,8 +1,8 @@
 ---
 # tasks file for eda-demo
 #
-- name: Include package list
-  include_vars: pakcages.yaml
+#- name: Include package list
+#  include_vars: pakcages.yaml
 
 - name: Kafka demo 
   include_tasks: kafka_demo.yaml
