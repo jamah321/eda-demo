@@ -28,7 +28,7 @@
 
 - name: Check whether "{{ item }}" package is installed successful
   ansible.builtin.debug:
-    msg: "{{ ansible_facts.packages[item] | length }} versions of item are installed!"
+    msg: "{{ ansible_facts.packages[item] | length }} versions of {{ item }} are installed!"
   when: item in ansible_facts.packages
   with_items:
     - "{{ package_name }}"
